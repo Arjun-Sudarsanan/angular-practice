@@ -1,0 +1,25 @@
+@if(showNewTaskPrompt){
+<div class="add-task">
+    <app-create-task
+        (closeNewTaskPrompt)="closeNewTaskModal()"
+        (newTaskDetails)="onAddNewTask($event)">
+    </app-create-task>
+</div>
+}
+
+<section id="tasks">
+    <header>
+        <h1>{{user.name}}</h1>
+        <menu>
+            <button (click)="addNewTask()">Add Task</button>
+        </menu>
+    </header>
+
+    <ul>
+        @for(task of userTaskDetails; track task.id){
+        <li>
+            <app-task [task]="task" (taskComplete)="onTaskComplete($event)"></app-task>
+        </li>
+        }
+    </ul>
+</section>

@@ -1,0 +1,35 @@
+<app-header>
+</app-header>
+
+
+<!-- <main>  older syntax
+  <ul id="users">
+    <li  *ngFor="let user of users"> import ngFor in ts file
+      <app-user
+        [avatar]="user.avatar"
+        [name]="user.name"
+        [id]="user.id"
+        (selectedUser)="onUserSelect($event)">
+      </app-user>
+    </li>
+  </ul>
+</main> -->
+
+<main>
+  <ul id="users">
+    @for (user of users; track user.id){
+    <li>
+      <app-user
+        [user]="user" [activeUser]="user.id === selectedUser" (selectedUser)="onUserSelect($event)">
+      </app-user>
+    </li>
+    }
+  </ul>
+  @if (selectedUser) {
+  <app-tasks
+    [user]="userDetails">
+  </app-tasks>
+  } @else {
+  <p>Select a user to see tasks!</p>
+  }
+</main>
